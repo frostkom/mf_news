@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: MF News
-Plugin URI: 
+Plugin URI: https://github.com/frostkom/mf_news
 Description:
-Version: 1.0.1
+Version: 1.0.2
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://martinfors.se
