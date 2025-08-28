@@ -13,10 +13,10 @@ class mf_news
 
 		$plugin_include_url = plugin_dir_url(__FILE__);
 
-		mf_enqueue_style('style_news', $plugin_include_url."style.css");
+		mf_enqueue_style('style_news', $plugin_include_url."style.php");
 
 		$out = "<div".parse_block_attributes(array('class' => "widget news", 'attributes' => $attributes)).">
-			<ul class='text_columns columns_".$attributes['news_columns']."'>";
+			<ul>";
 
 				$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_excerpt, post_content, post_date FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s ORDER BY post_date DESC LIMIT 0, ".esc_sql($attributes['news_amount']), 'post', 'publish'));
 
@@ -35,7 +35,7 @@ class mf_news
 
 					if($post_thumbnail == '')
 					{
-						$post_thumbnail = "<img src='".get_site_url()."/wp-content/plugins/mf_theme_core/images/blank.svg' class='image_fallback'>";
+						$post_thumbnail = apply_filters('get_image_fallback', "");
 					}
 
 					$out .= "<li>
