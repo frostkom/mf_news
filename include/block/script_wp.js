@@ -23,11 +23,6 @@
                 'type': 'string',
                 'default': '6'
             },
-			'news_columns':
-			{
-                'type': 'string',
-                'default': '3'
-            },
 		},
 		'supports':
 		{
@@ -75,22 +70,9 @@
 								{
 									props.setAttributes({news_amount: value});
 								},
-								min: 1,
-							    max: 12
-							}
-						),
-						el(
-							TextControl,
-							{
-								label: script_news_block_wp.news_columns_label,
-								type: 'number',
-								value: props.attributes.news_columns,
-								onChange: function(value)
-								{
-									props.setAttributes({news_columns: value});
-								},
-								min: 1,
-							    max: 4
+								min: 0,
+							    max: 12,
+								step: 3,
 							}
 						)
 					),

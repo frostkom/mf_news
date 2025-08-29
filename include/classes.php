@@ -9,7 +9,6 @@ class mf_news
 		global $wpdb;
 
 		if(!isset($attributes['news_amount'])){		$attributes['news_amount'] = 6;}
-		if(!isset($attributes['news_columns'])){	$attributes['news_columns'] = 3;}
 
 		$plugin_include_url = plugin_dir_url(__FILE__);
 
@@ -90,7 +89,6 @@ class mf_news
 			'block_title' => __("News", 'lang_news'),
 			'block_description' => __("Display News", 'lang_news'),
 			'news_amount_label' => __("Amount", 'lang_news'),
-			'news_columns_label' => __("Columns", 'lang_news'),
 		));
 	}
 

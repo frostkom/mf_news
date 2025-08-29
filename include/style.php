@@ -70,11 +70,6 @@ echo "@media all
 		    width: ".$column_width_desktop."%;
 		}
 
-			.widget.news ul:not(.text_columns) li + li
-			{
-				padding-top: .5em;
-			}
-
 			.widget.news li .image
 			{
 				background: rgba(0, 0, 0, .03);
