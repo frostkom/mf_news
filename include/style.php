@@ -109,7 +109,7 @@ echo "@media all
 				{
 					text-decoration: none;
 				}
-				
+
 				.widget.news .content p
 				{
 					margin: 0;
@@ -117,6 +117,7 @@ echo "@media all
 
 				.widget.news .content .wp-block-button
 				{
+					margin-top: .5em;
 					text-align: right;
 				}
 

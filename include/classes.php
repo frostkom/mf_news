@@ -48,7 +48,7 @@ class mf_news
 									{
 										$out .= "<span>".$category->cat_name."</span> ";
 									}
-								
+
 								$out .= "</span>
 								<span class='date'>".format_date($post_date)."</span>
 							</div>
