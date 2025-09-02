@@ -10,12 +10,12 @@ class mf_news
 
 		if(!isset($attributes['news_amount'])){		$attributes['news_amount'] = 6;}
 
-		$plugin_include_url = plugin_dir_url(__FILE__);
+		$plugin_base_include_url = plugins_url()."/mf_base/include/";
 
-		mf_enqueue_style('style_news', $plugin_include_url."style.php");
+		mf_enqueue_style('style_base_grid_columns', $plugin_base_include_url."style_grid_columns.php");
 
-		$out = "<div".parse_block_attributes(array('class' => "widget news", 'attributes' => $attributes)).">
-			<ul>";
+		$out = "<div".parse_block_attributes(array('class' => "widget news square", 'attributes' => $attributes)).">
+			<ul class='grid_columns'>";
 
 				$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_excerpt, post_content, post_date FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s ORDER BY post_date DESC LIMIT 0, ".esc_sql($attributes['news_amount']), 'post', 'publish'));
 
