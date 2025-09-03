@@ -40,7 +40,7 @@ class mf_news
 					$out .= "<li>
 						<div class='image'>".$post_thumbnail."</div>
 						<div class='content'>
-							<a href='".$post_url."' class='bold'>".$post_title."</a>
+							<a href='".$post_url."'>".$post_title."</a>
 							<div class='meta'>
 								<span class='name'>";
 
@@ -52,7 +52,7 @@ class mf_news
 								$out .= "</span>
 								<span class='date'>".format_date($post_date)."</span>
 							</div>
-							<p>";
+							<p class='text'>";
 
 								if($post_excerpt != '')
 								{
