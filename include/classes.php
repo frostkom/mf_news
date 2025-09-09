@@ -38,19 +38,17 @@ class mf_news
 					}
 
 					$out .= "<li>
-						<div class='image'>".$post_thumbnail."</div>
+						<div class='image'><a href='".$post_url."'>".$post_thumbnail."</a></div>
 						<div class='content'>
 							<a href='".$post_url."'>".$post_title."</a>
-							<div class='meta'>
-								<span class='name'>";
+							<div class='meta'>";
 
-									foreach($arr_categories as $category)
-									{
-										$out .= "<span>".$category->cat_name."</span> ";
-									}
+								foreach($arr_categories as $category)
+								{
+									$out .= "<span>".$category->cat_name."</span>";
+								}
 
-								$out .= "</span>
-								<span class='date'>".format_date($post_date)."</span>
+								$out .= "<span class='grey'>".format_date($post_date)."</span>
 							</div>
 							<p class='text'>";
 
