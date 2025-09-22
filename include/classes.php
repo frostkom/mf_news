@@ -30,15 +30,20 @@ class mf_news
 					$arr_categories = get_the_category($post_id);
 
 					$post_url = get_permalink($post_id);
-					$post_thumbnail = get_the_post_thumbnail($post_id, 'medium'); // medium / large / full
+					$post_image = get_the_post_thumbnail_url($post_id, 'large'); // medium / large / full
 
-					if($post_thumbnail == '')
+					if($post_image != '')
 					{
-						$post_thumbnail = apply_filters('get_image_fallback', "");
+						$post_image = "<img src='".$post_image."' alt='".$post_title."'>";
+					}
+
+					else
+					{
+						$post_image = apply_filters('get_image_fallback', "");
 					}
 
 					$out .= "<li>
-						<div class='image'><a href='".$post_url."'>".$post_thumbnail."</a></div>
+						<div class='image'><a href='".$post_url."'>".$post_image."</a></div>
 						<div class='content'>
 							<a href='".$post_url."'>".$post_title."</a>
 							<div class='meta'>";
