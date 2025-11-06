@@ -20,9 +20,9 @@
 			},
 			'news_amount':
 			{
-                'type': 'string',
-                'default': '6'
-            },
+				'type': 'string',
+				'default': '6'
+			},
 		},
 		'supports':
 		{
@@ -71,7 +71,7 @@
 									props.setAttributes({news_amount: value});
 								},
 								min: 0,
-							    max: 12,
+								max: 12,
 								step: 3,
 							}
 						)
