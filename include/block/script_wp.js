@@ -2,6 +2,7 @@
 {
 	var el = wp.element.createElement,
 		registerBlockType = wp.blocks.registerBlockType,
+		SelectControl = wp.components.SelectControl,
 		TextControl = wp.components.TextControl,
 		InspectorControls = wp.blockEditor.InspectorControls;
 
@@ -23,6 +24,11 @@
 				'type': 'string',
 				'default': '6'
 			},
+			'news_categories':
+			{
+				'type': 'array',
+				'default': ''
+			}
 		},
 		'supports':
 		{
@@ -73,6 +79,19 @@
 								min: 0,
 								max: 12,
 								step: 3,
+							}
+						),
+						el(
+							SelectControl,
+							{
+								label: script_news_block_wp.news_categories_label,
+								value: props.attributes.news_categories,
+								options: convert_php_array_to_block_js(script_news_block_wp.news_categories),
+								multiple: true,
+								onChange: function(value)
+								{
+									props.setAttributes({news_categories: value});
+								}
 							}
 						)
 					),

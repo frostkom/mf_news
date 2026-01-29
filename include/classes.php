@@ -8,16 +8,26 @@ class mf_news
 	{
 		global $wpdb;
 
-		if(!isset($attributes['news_amount'])){		$attributes['news_amount'] = 6;}
+		if(!isset($attributes['news_amount'])){			$attributes['news_amount'] = 6;}
+		if(!isset($attributes['news_categories'])){		$attributes['news_categories'] = [];}
 
 		$plugin_base_include_url = plugins_url()."/mf_base/include/";
-
 		mf_enqueue_style('style_base_grid_columns', $plugin_base_include_url."style_grid_columns.php");
 
 		$out = "<div".parse_block_attributes(array('class' => "widget news square", 'attributes' => $attributes)).">
 			<ul class='grid_columns'>";
 
-				$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_excerpt, post_content, post_date FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s ORDER BY post_date DESC LIMIT 0, ".esc_sql($attributes['news_amount']), 'post', 'publish'));
+				$arr_categories = [];
+
+				$query_join = $query_where = "";
+
+				if(count($attributes['news_categories']) > 0)
+				{
+					$query_join .= " INNER JOIN ".$wpdb->term_relationships." ON ".$wpdb->posts.".ID = ".$wpdb->term_relationships.".object_id INNER JOIN ".$wpdb->term_taxonomy." USING (term_taxonomy_id)";
+					$query_where .= " AND term_id IN('".implode("','", $attributes['news_categories'])."')";
+				}
+
+				$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_excerpt, post_content, post_date FROM ".$wpdb->posts.$query_join." WHERE post_type = %s AND post_status = %s".$query_where." ORDER BY post_date DESC LIMIT 0, ".esc_sql($attributes['news_amount']), 'post', 'publish'));
 
 				foreach($result as $r)
 				{
@@ -27,7 +37,10 @@ class mf_news
 					$post_content = $r->post_content;
 					$post_date = $r->post_date;
 
-					$arr_categories = get_the_category($post_id);
+					if(count($attributes['news_categories']) != 1)
+					{
+						$arr_categories = get_the_category($post_id);
+					}
 
 					$post_url = get_permalink($post_id);
 					$post_image = get_the_post_thumbnail_url($post_id, 'large'); // medium / large / full
@@ -45,12 +58,12 @@ class mf_news
 					$out .= "<li>
 						<div class='image'><a href='".$post_url."'>".$post_image."</a></div>
 						<div class='content'>
-							<a href='".$post_url."'>".$post_title."</a>
+							<a href='".$post_url."'>".$post_title." (".var_export($attributes['news_categories'], true).")</a>
 							<div class='meta'>";
 
-								foreach($arr_categories as $category)
+								foreach($arr_categories as $arr_category)
 								{
-									$out .= "<span>".$category->cat_name."</span>";
+									$out .= "<span>".$arr_category->cat_name."</span>";
 								}
 
 								$out .= "<span class='grey'>".format_date($post_date)."</span>
@@ -81,6 +94,25 @@ class mf_news
 		return $out;
 	}
 
+	function get_categories_for_select()
+	{
+		$arr_data = [];
+
+		$arr_categories = get_categories(array(
+			'taxonomy' => 'category',
+			'parent' => 0,
+			'hierarchical' => false,
+			'hide_empty' => false,
+		));
+
+		foreach($arr_categories as $arr_category)
+		{
+			$arr_data[$arr_category->term_id] = $arr_category->name;
+		}
+
+		return $arr_data;
+	}
+
 	function enqueue_block_editor_assets()
 	{
 		$plugin_include_url = plugin_dir_url(__FILE__);
@@ -92,6 +124,8 @@ class mf_news
 			'block_title' => __("News", 'lang_news'),
 			'block_description' => __("Display News", 'lang_news'),
 			'news_amount_label' => __("Amount", 'lang_news'),
+			'news_categories_label' => __("Categories", 'lang_news'),
+			'news_categories' => $this->get_categories_for_select(),
 		));
 	}
 
