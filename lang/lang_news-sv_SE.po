@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 07:37+0100\n"
+"POT-Creation-Date: 2026-02-17 11:01-0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,23 +15,27 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:85
+#: ../include/classes.php:66
+msgid "Uncategorized"
+msgstr "Okategoriserade"
+
+#: ../include/classes.php:88
 msgid "Read More"
 msgstr "Läs mer"
 
-#: ../include/classes.php:124
+#: ../include/classes.php:127
 msgid "News"
 msgstr "Nyheter"
 
-#: ../include/classes.php:125
+#: ../include/classes.php:128
 msgid "Display News"
 msgstr "Visa nyheter"
 
-#: ../include/classes.php:126
+#: ../include/classes.php:129
 msgid "Amount"
 msgstr "Antal"
 
-#: ../include/classes.php:127
+#: ../include/classes.php:130
 msgid "Categories"
 msgstr "Kategorier"
 

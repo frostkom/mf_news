@@ -58,12 +58,15 @@ class mf_news
 					$out .= "<li>
 						<div class='image'><a href='".$post_url."'>".$post_image."</a></div>
 						<div class='content'>
-							<a href='".$post_url."'>".$post_title." (".var_export($attributes['news_categories'], true).")</a>
-							<div class='meta'>";
+							<a href='".$post_url."'>".$post_title."</a>" // (".var_export($attributes['news_categories'], true).")
+							."<div class='meta'>";
 
 								foreach($arr_categories as $arr_category)
 								{
-									$out .= "<span>".$arr_category->cat_name."</span>";
+									if($arr_category->cat_name != __("Uncategorized", 'lang_news'))
+									{
+										$out .= "<span>".$arr_category->cat_name."</span>";
+									}
 								}
 
 								$out .= "<span class='grey'>".format_date($post_date)."</span>
