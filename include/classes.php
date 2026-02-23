@@ -4,7 +4,7 @@ class mf_news
 {
 	function __construct(){}
 
-	function block_render_callback($attributes)
+	function block_render_news_callback($attributes)
 	{
 		global $wpdb;
 
@@ -97,6 +97,68 @@ class mf_news
 		return $out;
 	}
 
+	function block_render_promote_callback($attributes)
+	{
+		global $wpdb;
+
+		if(!isset($attributes['promote_include'])){			$attributes['promote_include'] = [];}
+
+		if(count($attributes['promote_include']) > 0)
+		{
+			$plugin_base_include_url = plugins_url()."/mf_base/include/";
+			mf_enqueue_style('style_base_grid_columns', $plugin_base_include_url."style_grid_columns.php");
+
+			$out = "<div".parse_block_attributes(array('class' => "widget promote square", 'attributes' => $attributes)).">
+				<ul class='grid_columns'>";
+
+					$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_content FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s AND ID IN('".implode("','", $attributes['promote_include'])."') ORDER BY menu_order ASC", 'page', 'publish'));
+
+					foreach($result as $r)
+					{
+						$post_id = $r->ID;
+						$post_title = $r->post_title;
+						$post_content = $r->post_content;
+
+						if(strlen($post_content) < 60 && preg_match("/youtube\.com|youtu\.be/i", $post_content))
+						{
+							$out .= "<li>
+								<div class='video'>".apply_filters('the_content', $post_content)."</div>
+							</li>";
+						}
+
+						else
+						{
+							$post_url = get_permalink($post_id);
+							$post_image = get_the_post_thumbnail_url($post_id, 'large'); // medium / large / full
+
+							if($post_image != '')
+							{
+								$post_image = "<img src='".$post_image."' alt='".$post_title."'>";
+							}
+
+							else
+							{
+								$post_image = apply_filters('get_image_fallback', "");
+							}
+
+							$out .= "<li>
+								<a href='".$post_url."'>
+									<div class='image'>"
+										.$post_image
+										."<div class='content'><span>".$post_title."</span></div>"
+									."</div>
+								</a>
+							</li>";
+						}
+					}
+
+				$out .= "</ul>
+			</div>";
+		}
+
+		return $out;
+	}
+
 	function get_categories_for_select()
 	{
 		$arr_data = [];
@@ -123,12 +185,19 @@ class mf_news
 
 		wp_register_script('script_news_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-element', 'wp-components', 'wp-editor', 'wp-block-editor'), $plugin_version, true);
 
+		$arr_data = [];
+		get_post_children(array('post_type' => 'page'), $arr_data); //, 'order_by' => 'post_title'
+
 		wp_localize_script('script_news_block_wp', 'script_news_block_wp', array(
 			'block_title' => __("News", 'lang_news'),
 			'block_description' => __("Display News", 'lang_news'),
 			'news_amount_label' => __("Amount", 'lang_news'),
 			'news_categories_label' => __("Categories", 'lang_news'),
 			'news_categories' => $this->get_categories_for_select(),
+			'block_title2' => __("Promote", 'lang_news'),
+			'block_description2' => __("Display Promotions", 'lang_news'),
+			'promote_include_label' => __("Include", 'lang_news'),
+			'promote_include' => $arr_data,
 		));
 	}
 
@@ -139,7 +208,13 @@ class mf_news
 		register_block_type('mf/news', array(
 			'editor_script' => 'script_news_block_wp',
 			'editor_style' => 'style_base_block_wp',
-			'render_callback' => array($this, 'block_render_callback'),
+			'render_callback' => array($this, 'block_render_news_callback'),
+		));
+
+		register_block_type('mf/promote', array(
+			'editor_script' => 'script_news_block_wp',
+			'editor_style' => 'style_base_block_wp',
+			'render_callback' => array($this, 'block_render_promote_callback'),
 		));
 	}
 }

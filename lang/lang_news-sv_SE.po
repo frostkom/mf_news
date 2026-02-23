@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-17 11:01-0000\n"
+"POT-Creation-Date: 2026-02-23 08:40-0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -23,21 +23,33 @@ msgstr "Okategoriserade"
 msgid "Read More"
 msgstr "Läs mer"
 
-#: ../include/classes.php:127
+#: ../include/classes.php:192
 msgid "News"
 msgstr "Nyheter"
 
-#: ../include/classes.php:128
+#: ../include/classes.php:193
 msgid "Display News"
 msgstr "Visa nyheter"
 
-#: ../include/classes.php:129
+#: ../include/classes.php:194
 msgid "Amount"
 msgstr "Antal"
 
-#: ../include/classes.php:130
+#: ../include/classes.php:195
 msgid "Categories"
 msgstr "Kategorier"
+
+#: ../include/classes.php:197
+msgid "Promote"
+msgstr "Sidor"
+
+#: ../include/classes.php:198
+msgid "Display Promotions"
+msgstr "Visa sidor"
+
+#: ../include/classes.php:199
+msgid "Include"
+msgstr "Inkludera"
 
 #~ msgid "Columns"
 #~ msgstr "Kolumner"
