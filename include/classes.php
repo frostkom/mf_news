@@ -12,7 +12,7 @@ class mf_news
 		if(!isset($attributes['news_categories'])){		$attributes['news_categories'] = [];}
 		
 		$arr_out = $arr_categories = [];
-		$query_join = $query_where = "";
+		$out = $query_join = $query_where = "";
 
 		if(count($attributes['news_categories']) > 0)
 		{
