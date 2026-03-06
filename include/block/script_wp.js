@@ -28,6 +28,21 @@
 			{
 				'type': 'array',
 				'default': ''
+			},
+			'news_images':
+			{
+				'type': 'string',
+				'default': 'yes'
+			},
+			'news_datetime':
+			{
+				'type': 'string',
+				'default': 'yes'
+			},
+			'news_shorten':
+			{
+				'type': 'string',
+				'default': 'yes'
 			}
 		},
 		'supports':
@@ -77,7 +92,7 @@
 									props.setAttributes({news_amount: value});
 								},
 								min: 0,
-								max: 12,
+								max: 60,
 								step: 3,
 							}
 						),
@@ -91,6 +106,42 @@
 								onChange: function(value)
 								{
 									props.setAttributes({news_categories: value});
+								}
+							}
+						),
+						el(
+							SelectControl,
+							{
+								label: script_news_block_wp.news_images_label,
+								value: props.attributes.news_images,
+								options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
+								onChange: function(value)
+								{
+									props.setAttributes({news_images: value});
+								}
+							}
+						),
+						el(
+							SelectControl,
+							{
+								label: script_news_block_wp.news_datetime_label,
+								value: props.attributes.news_datetime,
+								options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
+								onChange: function(value)
+								{
+									props.setAttributes({news_datetime: value});
+								}
+							}
+						),
+						el(
+							SelectControl,
+							{
+								label: script_news_block_wp.news_shorten_label,
+								value: props.attributes.news_shorten,
+								options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
+								onChange: function(value)
+								{
+									props.setAttributes({news_shorten: value});
 								}
 							}
 						)

@@ -10,6 +10,9 @@ class mf_news
 
 		if(!isset($attributes['news_amount'])){			$attributes['news_amount'] = 6;}
 		if(!isset($attributes['news_categories'])){		$attributes['news_categories'] = [];}
+		if(!isset($attributes['news_images'])){			$attributes['news_images'] = 'yes';}
+		if(!isset($attributes['news_datetime'])){		$attributes['news_datetime'] = 'yes';}
+		if(!isset($attributes['news_shorten'])){		$attributes['news_shorten'] = 'yes';}
 		
 		$arr_out = $arr_categories = [];
 		$out = $query_join = $query_where = "";
@@ -30,57 +33,89 @@ class mf_news
 			$post_content = $r->post_content;
 			$post_date = $r->post_date;
 
+			if($post_excerpt == '' && $attributes['news_shorten'] == 'yes')
+			{
+				$post_excerpt = shorten_text(array('string' => strip_tags($post_content), 'limit' => 120));
+			}
+
 			if(count($attributes['news_categories']) != 1)
 			{
 				$arr_categories = get_the_category($post_id);
 			}
 
 			$post_url = get_permalink($post_id);
-			$post_image = get_the_post_thumbnail_url($post_id, 'large'); // medium / large / full
 
-			if($post_image != '')
+			if($attributes['news_images'] == 'yes')
 			{
-				$post_image = "<img src='".$post_image."' alt='".$post_title."'>";
+				$post_image = get_the_post_thumbnail_url($post_id, 'large'); // medium / large / full
+
+				if($post_image != '')
+				{
+					$post_image = "<img src='".$post_image."' alt='".$post_title."'>";
+				}
+
+				else
+				{
+					$post_image = apply_filters('get_image_fallback', "");
+				}
 			}
 
-			else
-			{
-				$post_image = apply_filters('get_image_fallback', "");
-			}
+			$out_temp = "<li>";
 
-			$out_temp = "<li>
-				<div class='image'><a href='".$post_url."'>".$post_image."</a></div>
-				<div class='content'>
-					<a href='".$post_url."'>".$post_title."</a>" // (".var_export($attributes['news_categories'], true).")
-					."<div class='meta'>";
+				if($attributes['news_images'] == 'yes')
+				{
+					$out_temp .= "<div class='image'><a href='".$post_url."'>".$post_image."</a></div>";
+				}
 
-						foreach($arr_categories as $arr_category)
-						{
-							if($arr_category->cat_name != __("Uncategorized", 'lang_news'))
+				$out_temp .= "<div class='content'>";
+
+					if($post_title != '')
+					{
+						$out_temp .= "<a href='".$post_url."'>".$post_title."</a>";
+					}
+
+					if(count($arr_categories) > 0 || $attributes['news_datetime'] == 'yes')
+					{
+						$out_temp .= "<div class='meta'>";
+
+							foreach($arr_categories as $arr_category)
 							{
-								$out_temp .= "<span>".$arr_category->cat_name."</span>";
+								if($arr_category->cat_name != __("Uncategorized", 'lang_news'))
+								{
+									$out_temp .= "<span>".$arr_category->cat_name."</span>";
+								}
 							}
-						}
 
-						$out_temp .= "<span class='grey'>".format_date($post_date)."</span>
-					</div>
-					<p class='text'>";
+							if($attributes['news_datetime'] == 'yes')
+							{
+								$out_temp .= "<span class='grey'>".format_date($post_date)."</span>";
+							}
 
-						if($post_excerpt != '')
+						$out_temp .= "</div>";
+					}
+
+					if($post_excerpt != '')
+					{
+						$out_temp .= "<p class='text'>"
+							.$post_excerpt
+						."</p>";
+
+						if($post_content != $post_excerpt)
 						{
-							$out_temp .= $post_excerpt;
+							$out_temp .= "<div class='wp-block-button'>
+								<a href='".$post_url."' class='wp-block-button__link'>".__("Read More", 'lang_news')."</a>
+							</div>";
 						}
+					}
 
-						else
-						{
-							$out_temp .= shorten_text(array('string' => strip_tags($post_content), 'limit' => 120));
-						}
+					else
+					{
+						$out_temp .= "<div class='text'>"
+							.apply_filters('the_content', $post_content)
+						."</div>";
+					}
 
-					$out_temp .= "</p>
-					<div class='wp-block-button'>
-						<a href='".$post_url."' class='wp-block-button__link'>".__("Read More", 'lang_news')."</a>
-					</div>
-				</div>
+				$out_temp .= "</div>
 			</li>";
 
 			$arr_out[] = $out_temp;
@@ -207,6 +242,10 @@ class mf_news
 			'news_amount_label' => __("Amount", 'lang_news'),
 			'news_categories_label' => __("Categories", 'lang_news'),
 			'news_categories' => $this->get_categories_for_select(),
+			'news_images_label' => __("Display Images", 'lang_news'),
+			'news_datetime_label' => __("Display Date", 'lang_news'),
+			'news_shorten_label' => __("Shorten Text", 'lang_news'),
+			'yes_no_for_select' => get_yes_no_for_select(),
 			'block_title2' => __("Promote", 'lang_news'),
 			'block_description2' => __("Display Promotions", 'lang_news'),
 			'promote_include_label' => __("Include", 'lang_news'),
