@@ -13,7 +13,7 @@ class mf_news
 		if(!isset($attributes['news_images'])){			$attributes['news_images'] = 'yes';}
 		if(!isset($attributes['news_datetime'])){		$attributes['news_datetime'] = 'yes';}
 		if(!isset($attributes['news_shorten'])){		$attributes['news_shorten'] = 'yes';}
-		
+
 		$arr_out = $arr_categories = [];
 		$out = $query_join = $query_where = "";
 
@@ -71,7 +71,7 @@ class mf_news
 
 					if($post_title != '')
 					{
-						$out_temp .= "<a href='".$post_url."'>".$post_title."</a>";
+						$out_temp .= "<a href='".$post_url."' class='grid_title'>".$post_title."</a>";
 					}
 
 					if(count($arr_categories) > 0 || $attributes['news_datetime'] == 'yes')
