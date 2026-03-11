@@ -65,18 +65,10 @@ class mf_news
 				if($attributes['news_images'] == 'yes')
 				{
 					$out_temp .= "<div class='image'><a href='".$post_url."'>".$post_image."</a></div>";
-				}
-
-				$out_temp .= "<div class='content'>";
-
-					if($post_title != '')
-					{
-						$out_temp .= "<a href='".$post_url."' class='grid_title'>".$post_title."</a>";
-					}
 
 					if(count($arr_categories) > 0 || $attributes['news_datetime'] == 'yes')
 					{
-						$out_temp .= "<div class='meta'>";
+						$out_temp .= "<div class='grid_meta'>";
 
 							foreach($arr_categories as $arr_category)
 							{
@@ -88,10 +80,18 @@ class mf_news
 
 							if($attributes['news_datetime'] == 'yes')
 							{
-								$out_temp .= "<span class='grey'>".format_date($post_date)."</span>";
+								$out_temp .= "<span>".format_date($post_date)."</span>";
 							}
 
 						$out_temp .= "</div>";
+					}
+				}
+
+				$out_temp .= "<div class='content'>";
+
+					if($post_title != '')
+					{
+						$out_temp .= "<a href='".$post_url."' class='grid_title'>".$post_title."</a>";
 					}
 
 					if($post_excerpt != '')
@@ -99,13 +99,6 @@ class mf_news
 						$out_temp .= "<p class='text'>"
 							.$post_excerpt
 						."</p>";
-
-						if($post_content != $post_excerpt)
-						{
-							$out_temp .= "<div class='wp-block-button'>
-								<a href='".$post_url."' class='wp-block-button__link'>".__("Read More", 'lang_news')."</a>
-							</div>";
-						}
 					}
 
 					else
@@ -115,8 +108,18 @@ class mf_news
 						."</div>";
 					}
 
-				$out_temp .= "</div>
-			</li>";
+				$out_temp .= "</div>";
+
+				if($post_excerpt != '' && $post_content != $post_excerpt)
+				{
+					$out_temp .= "<div class='grid_buttons'>
+						<div class='wp-block-button'>
+							<a href='".$post_url."' class='wp-block-button__link'>".__("Read More", 'lang_news')."</a>
+						</div>
+					</div>";
+				}
+
+			$out_temp .= "</li>";
 
 			$arr_out[] = $out_temp;
 		}
