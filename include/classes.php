@@ -64,7 +64,7 @@ class mf_news
 
 				if($attributes['news_images'] == 'yes')
 				{
-					$out_temp .= "<div class='image'><a href='".$post_url."'>".$post_image."</a></div>";
+					$out_temp .= "<div class='grid_image'><a href='".$post_url."'>".$post_image."</a></div>";
 
 					if(count($arr_categories) > 0 || $attributes['news_datetime'] == 'yes')
 					{
@@ -183,7 +183,7 @@ class mf_news
 
 					$out_temp .= "<li>
 						<a href='".$post_url."'>
-							<div class='image'>"
+							<div class='grid_image'>"
 								.$post_image
 								."<div class='content'><span>".$post_title."</span></div>"
 							."</div>
