@@ -145,6 +145,8 @@ class mf_news
 
 		if(!isset($attributes['promote_include'])){			$attributes['promote_include'] = [];}
 
+		$out = "";
+
 		if(count($attributes['promote_include']) > 0)
 		{
 			$arr_out = [];
@@ -199,7 +201,7 @@ class mf_news
 				$plugin_base_include_url = plugins_url()."/mf_base/include/";
 				mf_enqueue_style('style_base_grid_columns', $plugin_base_include_url."style_grid_columns.php");
 
-				$out = "<div".parse_block_attributes(array('class' => "widget promote square", 'attributes' => $attributes)).">
+				$out .= "<div".parse_block_attributes(array('class' => "widget promote square", 'attributes' => $attributes)).">
 					<ul class='grid_columns".(count($arr_out) < 3 ? " grid_grow" : "")."'>"
 						.implode("", $arr_out)
 					."</ul>
