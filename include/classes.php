@@ -126,8 +126,7 @@ class mf_news
 
 		if(count($arr_out) > 0)
 		{
-			$plugin_base_include_url = plugins_url()."/mf_base/include/";
-			mf_enqueue_style('style_base_grid_columns', $plugin_base_include_url."style_grid_columns.php");
+			do_action('load_grid_columns');
 
 			$out = "<div".parse_block_attributes(array('class' => "widget news square", 'attributes' => $attributes)).">
 				<ul class='grid_columns'>" //".(count($arr_out) < 3 ? " grid_grow" : "")."
@@ -198,8 +197,7 @@ class mf_news
 
 			if(count($arr_out) > 0)
 			{
-				$plugin_base_include_url = plugins_url()."/mf_base/include/";
-				mf_enqueue_style('style_base_grid_columns', $plugin_base_include_url."style_grid_columns.php");
+				do_action('load_grid_columns');
 
 				$out .= "<div".parse_block_attributes(array('class' => "widget promote square", 'attributes' => $attributes)).">
 					<ul class='grid_columns".(count($arr_out) < 3 ? " grid_grow" : "")."'>"
