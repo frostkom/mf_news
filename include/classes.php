@@ -249,8 +249,8 @@ class mf_news
 			'news_datetime_label' => __("Display Date", 'lang_news'),
 			'news_shorten_label' => __("Shorten Text", 'lang_news'),
 			'yes_no_for_select' => get_yes_no_for_select(),
-			'block_title2' => __("Promote", 'lang_news'),
-			'block_description2' => __("Display Promotions", 'lang_news'),
+			'block_title2' => __("Promote Pages", 'lang_news'),
+			'block_description2' => __("Display a promotion for pages", 'lang_news'),
 			'promote_include_label' => __("Include", 'lang_news'),
 			'promote_include' => $arr_data,
 		));
