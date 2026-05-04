@@ -48,7 +48,7 @@
 		'supports':
 		{
 			'html': false,
-			'multiple': false,
+			'multiple': true,
 			'align': true,
 			'spacing':
 			{
@@ -182,7 +182,7 @@
 		'supports':
 		{
 			'html': false,
-			'multiple': false,
+			'multiple': true,
 			'align': true,
 			'spacing':
 			{
