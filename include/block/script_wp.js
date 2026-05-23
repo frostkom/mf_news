@@ -177,6 +177,11 @@
 			{
 				'type': 'array',
 				'default': ''
+			},
+			'promote_display_title':
+			{
+				'type': 'string',
+				'default': 'yes'
 			}
 		},
 		'supports':
@@ -225,6 +230,18 @@
 								onChange: function(value)
 								{
 									props.setAttributes({promote_include: value});
+								}
+							}
+						),
+						el(
+							SelectControl,
+							{
+								label: script_news_block_wp.promote_display_title_label,
+								value: props.attributes.promote_display_title,
+								options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
+								onChange: function(value)
+								{
+									props.setAttributes({promote_display_title: value});
 								}
 							}
 						)

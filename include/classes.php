@@ -143,6 +143,7 @@ class mf_news
 		global $wpdb;
 
 		if(!isset($attributes['promote_include'])){			$attributes['promote_include'] = [];}
+		if(!isset($attributes['promote_display_title'])){	$attributes['promote_display_title'] = 'yes';}
 
 		$out = "";
 
@@ -185,9 +186,14 @@ class mf_news
 					$out_temp .= "<li>
 						<a href='".$post_url."'>
 							<div class='grid_image'>"
-								.$post_image
-								."<div class='content'><span>".$post_title."</span></div>"
-							."</div>
+								.$post_image;
+
+								if($attributes['promote_display_title'] == 'yes')
+								{
+									$out_temp .= "<div class='content'><span>".$post_title."</span></div>";
+								}
+
+							$out_temp .= "</div>
 						</a>
 					</li>";
 				}
@@ -253,6 +259,7 @@ class mf_news
 			'block_description2' => __("Display a promotion for pages", 'lang_news'),
 			'promote_include_label' => __("Include", 'lang_news'),
 			'promote_include' => $arr_data,
+			'promote_display_title_label' => __("Display Title", 'lang_news'),
 		));
 	}
 
