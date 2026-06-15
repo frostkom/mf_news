@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-23 16:22+0100\n"
+"POT-Creation-Date: 2026-06-15 09:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -23,49 +23,58 @@ msgstr "Okategoriserade"
 msgid "Read More"
 msgstr "Läs mer"
 
-#: ../include/classes.php:249
+#: ../include/classes.php:330
 msgid "News"
 msgstr "Nyheter"
 
-#: ../include/classes.php:250
+#: ../include/classes.php:331
 msgid "Display News"
 msgstr "Visa nyheter"
 
-#: ../include/classes.php:251
+#: ../include/classes.php:332
 msgid "Amount"
 msgstr "Antal"
 
-#: ../include/classes.php:252
+#: ../include/classes.php:333
 msgid "Categories"
 msgstr "Kategorier"
 
-#: ../include/classes.php:254
+#: ../include/classes.php:335
 msgid "Display Images"
 msgstr "Visa bilder"
 
-#: ../include/classes.php:255
+#: ../include/classes.php:336
 msgid "Display Date"
 msgstr "Visa datum"
 
-#: ../include/classes.php:256
+#: ../include/classes.php:337
 msgid "Shorten Text"
 msgstr "Förkorta text"
 
-#: ../include/classes.php:258
-msgid "Promote Pages"
-msgstr "Marknadsför sidor"
+#: ../include/classes.php:339
+msgid "Other Pages"
+msgstr "Andra sidor"
 
-#: ../include/classes.php:259
-msgid "Display a promotion for pages"
-msgstr "Visa marknadsföring för sidor"
+#: ../include/classes.php:340
+msgid "Display other pages"
+msgstr "Visa andra sidor"
 
-#: ../include/classes.php:260
+#: ../include/classes.php:341
+#: ../include/classes.php:346
 msgid "Include"
 msgstr "Inkludera"
 
-#: ../include/classes.php:262
+#: ../include/classes.php:343
 msgid "Display Title"
 msgstr "Visa rubrik"
+
+#: ../include/classes.php:344
+msgid "Other Posts from Type"
+msgstr "Andra från samma typ"
+
+#: ../include/classes.php:345
+msgid "Display other posts from type"
+msgstr "Visa andra från samma typ"
 
 #~ msgid "Columns"
 #~ msgstr "Kolumner"

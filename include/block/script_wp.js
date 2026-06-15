@@ -162,8 +162,8 @@
 
 	registerBlockType('mf/promote',
 	{
-		title: script_news_block_wp.block_title2,
-		description: script_news_block_wp.block_description2,
+		title: script_news_block_wp.block_title_pages,
+		description: script_news_block_wp.block_description_pages,
 		icon: 'media-document',
 		category: 'widgets',
 		'attributes':
@@ -249,7 +249,90 @@
 					el(
 						'strong',
 						{className: props.className},
-						script_news_block_wp.block_title2
+						script_news_block_wp.block_title_pages
+					)
+				]
+			);
+		},
+		save: function()
+		{
+			return null;
+		}
+	});
+
+	registerBlockType('mf/posttype',
+	{
+		title: script_news_block_wp.block_title_posttype,
+		description: script_news_block_wp.block_description_posttype,
+		icon: 'media-document',
+		category: 'widgets',
+		'attributes':
+		{
+			'align':
+			{
+				'type': 'string',
+				'default': ''
+			},
+			'post_type_include':
+			{
+				'type': 'array',
+				'default': ''
+			}
+		},
+		'supports':
+		{
+			'html': false,
+			'multiple': true,
+			'align': true,
+			'spacing':
+			{
+				'margin': true,
+				'padding': true
+			},
+			'color':
+			{
+				'background': true,
+				'gradients': false,
+				'text': true
+			},
+			'defaultStylePicker': true,
+			'typography':
+			{
+				'fontSize': true,
+				'lineHeight': true
+			},
+			"__experimentalBorder":
+			{
+				"radius": true
+			}
+		},
+		edit: function(props)
+		{
+			return el(
+				'div',
+				{className: 'wp_mf_block_container'},
+				[
+					el(
+						InspectorControls,
+						'div',
+						el(
+							SelectControl,
+							{
+								label: script_news_block_wp.post_type_include_label,
+								value: props.attributes.post_type_include,
+								options: convert_php_array_to_block_js(script_news_block_wp.post_type_include),
+								multiple: true,
+								onChange: function(value)
+								{
+									props.setAttributes({post_type_include: value});
+								}
+							}
+						)
+					),
+					el(
+						'strong',
+						{className: props.className},
+						script_news_block_wp.block_title_posttype
 					)
 				]
 			);

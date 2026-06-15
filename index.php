@@ -2,8 +2,8 @@
 /*
 Plugin Name: MF News
 Plugin URI: https://github.com/frostkom/mf_news
-Description: Add block to display news
-Version: 1.1.16
+Description: Add block to display news, other pages or posts from same type
+Version: 1.2.1
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://martinfors.se

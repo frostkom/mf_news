@@ -138,7 +138,7 @@ class mf_news
 		return $out;
 	}
 
-	function block_render_promote_callback($attributes)
+	function block_render_pages_callback($attributes)
 	{
 		global $wpdb;
 
@@ -216,6 +216,80 @@ class mf_news
 		return $out;
 	}
 
+	function block_render_post_type_callback($attributes)
+	{
+		global $wpdb, $post;
+
+		if(!isset($attributes['post_type_include'])){			$attributes['post_type_include'] = [];}
+
+		$out = "";
+
+		if(count($attributes['post_type_include']) > 0)
+		{
+			$arr_out = [];
+
+			$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_content FROM ".$wpdb->posts." WHERE post_type IN('".implode("','", $attributes['post_type_include'])."') AND post_status = %s AND ID != '%d' ORDER BY menu_order ASC LIMIT 0, 6", 'publish', $post->ID));
+
+			foreach($result as $r)
+			{
+				$post_id = $r->ID;
+				$post_title = $r->post_title;
+				$post_content = $r->post_content;
+
+				$out_temp = "";
+
+				if(strlen($post_content) < 60 && preg_match("/youtube\.com|youtu\.be/i", $post_content))
+				{
+					$out_temp .= "<li>
+						<div class='video'>".apply_filters('the_content', $post_content)."</div>
+					</li>";
+				}
+
+				else
+				{
+					$post_url = get_permalink($post_id);
+					$post_image = get_the_post_thumbnail_url($post_id, 'large'); // medium / large / full
+
+					if($post_image != '')
+					{
+						$post_image = "<img src='".$post_image."' alt='".$post_title."'>";
+					}
+
+					else
+					{
+						$post_image = apply_filters('get_image_fallback', "");
+					}
+
+					$out_temp .= "<li>
+						<div class='grid_image'>
+							<a href='".$post_url."'>"
+								.$post_image
+							."</a>
+						</div>
+						<div class='content'>
+							<a href='".$post_url."'>".$post_title."</a>
+						</div>
+					</li>";
+				}
+
+				$arr_out[] = $out_temp;
+			}
+
+			if(count($arr_out) > 0)
+			{
+				do_action('load_grid_columns');
+
+				$out .= "<div".parse_block_attributes(array('class' => "widget news_post_type square", 'attributes' => $attributes)).">
+					<ul class='grid_columns".(count($arr_out) < 3 ? " grid_grow" : "")."'>"
+						.implode("", $arr_out)
+					."</ul>
+				</div>";
+			}
+		}
+
+		return $out;
+	}
+
 	function get_categories_for_select()
 	{
 		$arr_data = [];
@@ -242,8 +316,15 @@ class mf_news
 
 		wp_register_script('script_news_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-element', 'wp-components', 'wp-editor', 'wp-block-editor'), $plugin_version, true);
 
-		$arr_data = [];
-		get_post_children(array('post_type' => 'page'), $arr_data); //, 'order_by' => 'post_title'
+		$arr_data_pages = [];
+		get_post_children(array('post_type' => 'page'), $arr_data_pages);
+
+		$arr_data_post_types = [];
+
+		foreach(get_post_types(array('public' => true, 'exclude_from_search' => false), 'objects') as $arr_post_type)
+		{
+			$arr_data_post_types[$arr_post_type->name] = $arr_post_type->label;
+		}
 
 		wp_localize_script('script_news_block_wp', 'script_news_block_wp', array(
 			'block_title' => __("News", 'lang_news'),
@@ -255,11 +336,15 @@ class mf_news
 			'news_datetime_label' => __("Display Date", 'lang_news'),
 			'news_shorten_label' => __("Shorten Text", 'lang_news'),
 			'yes_no_for_select' => get_yes_no_for_select(),
-			'block_title2' => __("Promote Pages", 'lang_news'),
-			'block_description2' => __("Display a promotion for pages", 'lang_news'),
+			'block_title_pages' => __("Other Pages", 'lang_news'),
+			'block_description_pages' => __("Display other pages", 'lang_news'),
 			'promote_include_label' => __("Include", 'lang_news'),
-			'promote_include' => $arr_data,
+			'promote_include' => $arr_data_pages,
 			'promote_display_title_label' => __("Display Title", 'lang_news'),
+			'block_title_posttype' => __("Other Posts from Type", 'lang_news'),
+			'block_description_posttype' => __("Display other posts from type", 'lang_news'),
+			'post_type_include_label' => __("Include", 'lang_news'),
+			'post_type_include' => $arr_data_post_types,
 		));
 	}
 
@@ -276,7 +361,13 @@ class mf_news
 		register_block_type('mf/promote', array(
 			'editor_script' => 'script_news_block_wp',
 			'editor_style' => 'style_base_block_wp',
-			'render_callback' => array($this, 'block_render_promote_callback'),
+			'render_callback' => array($this, 'block_render_pages_callback'),
+		));
+		
+		register_block_type('mf/posttype', array(
+			'editor_script' => 'script_news_block_wp',
+			'editor_style' => 'style_base_block_wp',
+			'render_callback' => array($this, 'block_render_post_type_callback'),
 		));
 	}
 }
