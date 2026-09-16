@@ -87,7 +87,7 @@ class mf_news
 					}
 				}
 
-				$out_temp .= "<div class='content'>";
+				$out_temp .= "<div class='grid_content'>";
 
 					if($post_title != '')
 					{
@@ -96,14 +96,14 @@ class mf_news
 
 					if($post_excerpt != '')
 					{
-						$out_temp .= "<p class='text'>"
+						$out_temp .= "<p class='grid_text'>"
 							.$post_excerpt
 						."</p>";
 					}
 
 					else
 					{
-						$out_temp .= "<div class='text'>"
+						$out_temp .= "<div class='grid_text'>"
 							.apply_filters('the_content', $post_content)
 						."</div>";
 					}
@@ -151,12 +151,13 @@ class mf_news
 		{
 			$arr_out = [];
 
-			$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_content FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s AND ID IN('".implode("','", $attributes['promote_include'])."') ORDER BY menu_order ASC", 'page', 'publish'));
+			$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_excerpt, post_content FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s AND ID IN('".implode("','", $attributes['promote_include'])."') ORDER BY menu_order ASC", 'page', 'publish'));
 
 			foreach($result as $r)
 			{
 				$post_id = $r->ID;
 				$post_title = $r->post_title;
+				$post_excerpt = $r->post_excerpt;
 				$post_content = $r->post_content;
 
 				$out_temp = "";
@@ -190,7 +191,17 @@ class mf_news
 
 								if($attributes['promote_display_title'] == 'yes')
 								{
-									$out_temp .= "<div class='content'><span>".$post_title."</span></div>";
+									$out_temp .= "<div class='grid_content'>
+										<div>
+											<span class='grid_title'>".$post_title."</span>";
+
+											if($post_excerpt != '')
+											{
+												$out_temp .= "<p class='grid_text'>".$post_excerpt."</p>";
+											}
+
+										$out_temp .= "</div>
+									</div>";
 								}
 
 							$out_temp .= "</div>
@@ -266,8 +277,8 @@ class mf_news
 								.$post_image
 							."</a>
 						</div>
-						<div class='content'>
-							<a href='".$post_url."'>".$post_title."</a>
+						<div class='grid_content'>
+							<a href='".$post_url."' class='grid_title'>".$post_title."</a>
 						</div>
 					</li>";
 				}
@@ -363,7 +374,7 @@ class mf_news
 			'editor_style' => 'style_base_block_wp',
 			'render_callback' => array($this, 'block_render_pages_callback'),
 		));
-		
+
 		register_block_type('mf/posttype', array(
 			'editor_script' => 'script_news_block_wp',
 			'editor_style' => 'style_base_block_wp',
