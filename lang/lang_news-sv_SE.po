@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-15 09:52+0100\n"
+"POT-Creation-Date: 2026-09-24 14:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:75
+#: ../include/classes.php:73
 msgid "Uncategorized"
 msgstr "Okategoriserade"
 
@@ -23,56 +23,72 @@ msgstr "Okategoriserade"
 msgid "Read More"
 msgstr "Läs mer"
 
-#: ../include/classes.php:330
+#: ../include/classes.php:385
 msgid "News"
 msgstr "Nyheter"
 
-#: ../include/classes.php:331
+#: ../include/classes.php:386
 msgid "Display News"
 msgstr "Visa nyheter"
 
-#: ../include/classes.php:332
+#: ../include/classes.php:387
 msgid "Amount"
 msgstr "Antal"
 
-#: ../include/classes.php:333
+#: ../include/classes.php:388
 msgid "Categories"
 msgstr "Kategorier"
 
-#: ../include/classes.php:335
+#: ../include/classes.php:390
 msgid "Display Images"
 msgstr "Visa bilder"
 
-#: ../include/classes.php:336
+#: ../include/classes.php:391
 msgid "Display Date"
 msgstr "Visa datum"
 
-#: ../include/classes.php:337
+#: ../include/classes.php:392
 msgid "Shorten Text"
 msgstr "Förkorta text"
 
-#: ../include/classes.php:339
+#: ../include/classes.php:394
+msgid "News Promo"
+msgstr "En nyhet"
+
+#: ../include/classes.php:395
+msgid "Display News Promo"
+msgstr "Visa en nyhet"
+
+#: ../include/classes.php:396
+msgid "Day Limit"
+msgstr "Antal dagar bakåt i tiden"
+
+#: ../include/classes.php:397
+msgid "Text"
+msgstr ""
+
+#: ../include/classes.php:398
 msgid "Other Pages"
 msgstr "Andra sidor"
 
-#: ../include/classes.php:340
+#: ../include/classes.php:399
 msgid "Display other pages"
 msgstr "Visa andra sidor"
 
-#: ../include/classes.php:341
-#: ../include/classes.php:346
+#: ../include/classes.php:400
+#: ../include/classes.php:405
 msgid "Include"
 msgstr "Inkludera"
 
-#: ../include/classes.php:343
+#: ../include/classes.php:402
 msgid "Display Title"
 msgstr "Visa rubrik"
 
-#: ../include/classes.php:344
+#: ../include/classes.php:403
 msgid "Other Posts from Type"
 msgstr "Andra från samma typ"
 
-#: ../include/classes.php:345
+#: ../include/classes.php:404
 msgid "Display other posts from type"
 msgstr "Visa andra från samma typ"
 
@@ -216,9 +232,6 @@ msgstr "Visa andra från samma typ"
 
 #~ msgid "The file does not exist"
 #~ msgstr "Filen finns inte"
-
-#~ msgid "New Errors"
-#~ msgstr "Nya fel"
 
 #~ msgid "There are %d new errors in the log"
 #~ msgstr "Det finns %d nya fel i loggen"

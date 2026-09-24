@@ -138,6 +138,50 @@ class mf_news
 		return $out;
 	}
 
+	function block_render_news_promo_callback($attributes)
+	{
+		global $wpdb;
+
+		if(!isset($attributes['news_day_limit'])){		$attributes['news_day_limit'] = 0;}
+		if(!isset($attributes['news_text'])){			$attributes['news_text'] = "";}
+		if(!isset($attributes['news_categories'])){		$attributes['news_categories'] = [];}
+
+		$out = $query_join = $query_where = "";
+
+		if(count($attributes['news_categories']) > 0)
+		{
+			$query_join .= " INNER JOIN ".$wpdb->term_relationships." ON ".$wpdb->posts.".ID = ".$wpdb->term_relationships.".object_id INNER JOIN ".$wpdb->term_taxonomy." USING (term_taxonomy_id)";
+			$query_where .= " AND term_id IN('".implode("','", $attributes['news_categories'])."')";
+		}
+
+		if($attributes['news_day_limit'] > 0)
+		{
+			$query_where .= " AND post_date > DATE_SUB(NOW(), INTERVAL ".esc_sql($attributes['news_day_limit'])." DAY)";
+		}
+
+		$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title FROM ".$wpdb->posts.$query_join." WHERE post_type = %s AND post_status = %s".$query_where." ORDER BY post_date DESC LIMIT 0, 1", 'post', 'publish'));
+
+		foreach($result as $r)
+		{
+			$post_id = $r->ID;
+			$post_title = $r->post_title;
+
+			$post_url = get_permalink($post_id);
+
+			$out .= "<div".parse_block_attributes(array('class' => "widget news_promo", 'attributes' => $attributes)).">";
+
+				if($attributes['news_text'])
+				{
+					$out .= "<span>".$attributes['news_text']."</span>&nbsp;";
+				}
+
+				$out .= "<a href='".$post_url."'>".$post_title."</a>
+			</div>"; //<a href='".$post_url."' class='read_more_button'>".__("Read More", 'lang_news')."</a>
+		}
+
+		return $out;
+	}
+
 	function block_render_pages_callback($attributes)
 	{
 		global $wpdb;
@@ -347,6 +391,10 @@ class mf_news
 			'news_datetime_label' => __("Display Date", 'lang_news'),
 			'news_shorten_label' => __("Shorten Text", 'lang_news'),
 			'yes_no_for_select' => get_yes_no_for_select(),
+			'block_title_news_promo' => __("News Promo", 'lang_news'),
+			'block_description_news_promo' => __("Display News Promo", 'lang_news'),
+			'news_day_limit_label' => __("Day Limit", 'lang_news'),
+			'news_text_label' => __("Text", 'lang_news'),
 			'block_title_pages' => __("Other Pages", 'lang_news'),
 			'block_description_pages' => __("Display other pages", 'lang_news'),
 			'promote_include_label' => __("Include", 'lang_news'),
@@ -367,6 +415,12 @@ class mf_news
 			'editor_script' => 'script_news_block_wp',
 			'editor_style' => 'style_base_block_wp',
 			'render_callback' => array($this, 'block_render_news_callback'),
+		));
+
+		register_block_type('mf/newspromo', array(
+			'editor_script' => 'script_news_block_wp',
+			'editor_style' => 'style_base_block_wp',
+			'render_callback' => array($this, 'block_render_news_promo_callback'),
 		));
 
 		register_block_type('mf/promote', array(

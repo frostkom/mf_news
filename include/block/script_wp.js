@@ -160,6 +160,126 @@
 		}
 	});
 
+	registerBlockType('mf/newspromo',
+	{
+		title: script_news_block_wp.block_title_news_promo,
+		description: script_news_block_wp.block_description_news_promo,
+		icon: 'media-document',
+		category: 'widgets',
+		'attributes':
+		{
+			'align':
+			{
+				'type': 'string',
+				'default': ''
+			},
+			'news_day_limit':
+			{
+				'type': 'string',
+				'default': ''
+			},
+			'news_text':
+			{
+				'type': 'string',
+				'default': ''
+			},
+			'news_categories':
+			{
+				'type': 'array',
+				'default': ''
+			}
+		},
+		'supports':
+		{
+			'html': false,
+			'multiple': true,
+			'align': true,
+			'spacing':
+			{
+				'margin': true,
+				'padding': true
+			},
+			'color':
+			{
+				'background': true,
+				'gradients': false,
+				'text': true
+			},
+			'defaultStylePicker': true,
+			'typography':
+			{
+				'fontSize': true,
+				'lineHeight': true
+			},
+			"__experimentalBorder":
+			{
+				"radius": true
+			}
+		},
+		edit: function(props)
+		{
+			return el(
+				'div',
+				{className: 'wp_mf_block_container'},
+				[
+					el(
+						InspectorControls,
+						'div',
+						el(
+							TextControl,
+							{
+								label: script_news_block_wp.news_text_label,
+								type: 'text',
+								value: props.attributes.news_text,
+								onChange: function(value)
+								{
+									props.setAttributes({news_text: value});
+								},
+							}
+						),
+						el(
+							TextControl,
+							{
+								label: script_news_block_wp.news_day_limit_label,
+								type: 'number',
+								value: props.attributes.news_day_limit,
+								onChange: function(value)
+								{
+									props.setAttributes({news_day_limit: value});
+								},
+								min: 0,
+								max: 60,
+								step: 1,
+							}
+						),
+						el(
+							SelectControl,
+							{
+								label: script_news_block_wp.news_categories_label,
+								value: props.attributes.news_categories,
+								options: convert_php_array_to_block_js(script_news_block_wp.news_categories),
+								multiple: true,
+								onChange: function(value)
+								{
+									props.setAttributes({news_categories: value});
+								}
+							}
+						)
+					),
+					el(
+						'strong',
+						{className: props.className},
+						script_news_block_wp.block_title_news_promo
+					)
+				]
+			);
+		},
+		save: function()
+		{
+			return null;
+		}
+	});
+
 	registerBlockType('mf/promote',
 	{
 		title: script_news_block_wp.block_title_pages,
