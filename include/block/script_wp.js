@@ -29,6 +29,11 @@
 				'type': 'array',
 				'default': ''
 			},
+			'news_style':
+			{
+				'type': 'string',
+				'default': ''
+			},
 			'news_images':
 			{
 				'type': 'string',
@@ -106,6 +111,19 @@
 								onChange: function(value)
 								{
 									props.setAttributes({news_categories: value});
+								}
+							}
+						),
+						el(
+							SelectControl,
+							{
+								label: script_news_block_wp.news_style_label,
+								value: props.attributes.news_style,
+								options: convert_php_array_to_block_js(script_news_block_wp.arr_news_style, false),
+								multiple: false,
+								onChange: function(value)
+								{
+									props.setAttributes({news_style: value});
 								}
 							}
 						),

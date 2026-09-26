@@ -10,6 +10,7 @@ class mf_news
 
 		if(!isset($attributes['news_amount'])){			$attributes['news_amount'] = 6;}
 		if(!isset($attributes['news_categories'])){		$attributes['news_categories'] = [];}
+		if(!isset($attributes['news_style'])){			$attributes['news_style'] = '';}
 		if(!isset($attributes['news_images'])){			$attributes['news_images'] = 'yes';}
 		if(!isset($attributes['news_datetime'])){		$attributes['news_datetime'] = 'yes';}
 		if(!isset($attributes['news_shorten'])){		$attributes['news_shorten'] = 'yes';}
@@ -126,9 +127,22 @@ class mf_news
 
 		if(count($arr_out) > 0)
 		{
-			do_action('load_grid_columns');
+			switch($attributes['news_style'])
+			{
+				case 'scroll':
+					do_action('load_grid_columns_scrollable');
 
-			$out = "<div".parse_block_attributes(array('class' => "widget news square", 'attributes' => $attributes)).">
+					$block_class = " is_scrollable";
+				break;
+
+				default:
+					do_action('load_grid_columns');
+
+					$block_class = "";
+				break;
+			}
+
+			$out = "<div".parse_block_attributes(array('class' => "widget news square".$block_class, 'attributes' => $attributes)).">
 				<ul class='grid_columns'>" //".(count($arr_out) < 3 ? " grid_grow" : "")."
 					.implode("", $arr_out)
 				."</ul>
@@ -364,6 +378,16 @@ class mf_news
 		return $arr_data;
 	}
 
+	function get_style_for_select()
+	{
+		$arr_data = [];
+		$arr_data[''] = "-- ".__("Choose Here", 'lang_news')." --";
+		$arr_data['default'] = __("Default", 'lang_news');
+		$arr_data['scroll'] = __("Horizontal Scroll", 'lang_news');
+
+		return $arr_data;
+	}
+
 	function enqueue_block_editor_assets()
 	{
 		$plugin_include_url = plugin_dir_url(__FILE__);
@@ -387,6 +411,8 @@ class mf_news
 			'news_amount_label' => __("Amount", 'lang_news'),
 			'news_categories_label' => __("Categories", 'lang_news'),
 			'news_categories' => $this->get_categories_for_select(),
+			'news_style_label' => __("Style", 'lang_news'),
+			'arr_news_style' => $this->get_style_for_select(),
 			'news_images_label' => __("Display Images", 'lang_news'),
 			'news_datetime_label' => __("Display Date", 'lang_news'),
 			'news_shorten_label' => __("Shorten Text", 'lang_news'),

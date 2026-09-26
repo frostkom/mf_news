@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-24 14:42+0100\n"
+"POT-Creation-Date: 2026-09-26 13:07+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,80 +15,96 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:73
+#: ../include/classes.php:74
 msgid "Uncategorized"
 msgstr "Okategoriserade"
 
-#: ../include/classes.php:117
+#: ../include/classes.php:118
 msgid "Read More"
 msgstr "Läs mer"
 
+#: ../include/classes.php:384
+msgid "Choose Here"
+msgstr "Välj här"
+
 #: ../include/classes.php:385
+msgid "Default"
+msgstr "Standard"
+
+#: ../include/classes.php:386
+msgid "Horizontal Scroll"
+msgstr "Horisontell skroll"
+
+#: ../include/classes.php:409
 msgid "News"
 msgstr "Nyheter"
 
-#: ../include/classes.php:386
+#: ../include/classes.php:410
 msgid "Display News"
 msgstr "Visa nyheter"
 
-#: ../include/classes.php:387
+#: ../include/classes.php:411
 msgid "Amount"
 msgstr "Antal"
 
-#: ../include/classes.php:388
+#: ../include/classes.php:412
 msgid "Categories"
 msgstr "Kategorier"
 
-#: ../include/classes.php:390
+#: ../include/classes.php:414
+msgid "Style"
+msgstr "Stil"
+
+#: ../include/classes.php:416
 msgid "Display Images"
 msgstr "Visa bilder"
 
-#: ../include/classes.php:391
+#: ../include/classes.php:417
 msgid "Display Date"
 msgstr "Visa datum"
 
-#: ../include/classes.php:392
+#: ../include/classes.php:418
 msgid "Shorten Text"
 msgstr "Förkorta text"
 
-#: ../include/classes.php:394
+#: ../include/classes.php:420
 msgid "News Promo"
 msgstr "En nyhet"
 
-#: ../include/classes.php:395
+#: ../include/classes.php:421
 msgid "Display News Promo"
 msgstr "Visa en nyhet"
 
-#: ../include/classes.php:396
+#: ../include/classes.php:422
 msgid "Day Limit"
 msgstr "Antal dagar bakåt i tiden"
 
-#: ../include/classes.php:397
+#: ../include/classes.php:423
 msgid "Text"
 msgstr ""
 
-#: ../include/classes.php:398
+#: ../include/classes.php:424
 msgid "Other Pages"
 msgstr "Andra sidor"
 
-#: ../include/classes.php:399
+#: ../include/classes.php:425
 msgid "Display other pages"
 msgstr "Visa andra sidor"
 
-#: ../include/classes.php:400
-#: ../include/classes.php:405
+#: ../include/classes.php:426
+#: ../include/classes.php:431
 msgid "Include"
 msgstr "Inkludera"
 
-#: ../include/classes.php:402
+#: ../include/classes.php:428
 msgid "Display Title"
 msgstr "Visa rubrik"
 
-#: ../include/classes.php:403
+#: ../include/classes.php:429
 msgid "Other Posts from Type"
 msgstr "Andra från samma typ"
 
-#: ../include/classes.php:404
+#: ../include/classes.php:430
 msgid "Display other posts from type"
 msgstr "Visa andra från samma typ"
 
@@ -145,9 +161,6 @@ msgstr "Visa andra från samma typ"
 
 #~ msgid "Are you sure you want to delete [listName]?"
 #~ msgstr "Är du säker på att du vill radera [listName]?"
-
-#~ msgid "Delete"
-#~ msgstr "Radera"
 
 #~ msgid "between"
 #~ msgstr "mellan"
