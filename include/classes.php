@@ -34,17 +34,17 @@ class mf_news
 			$post_content = $r->post_content;
 			$post_date = $r->post_date;
 
+			$post_url = "#";
+
 			if($post_excerpt == '' && $attributes['news_shorten'] == 'yes')
 			{
 				$post_excerpt = shorten_text(array('string' => strip_tags($post_content), 'limit' => 120));
 			}
 
-			if(count($attributes['news_categories']) != 1)
+			if($post_content != '')
 			{
-				$arr_categories = get_the_category($post_id);
+				$post_url = get_permalink($post_id);
 			}
-
-			$post_url = get_permalink($post_id);
 
 			if($attributes['news_images'] == 'yes')
 			{
@@ -65,15 +65,44 @@ class mf_news
 
 				if($attributes['news_images'] == 'yes')
 				{
-					$out_temp .= "<div class='grid_image'><a href='".$post_url."'>".$post_image."</a></div>";
+					$out_temp .= "<div class='grid_image'>";
+					
+						if($post_content != '')
+						{
+							$out_temp .= "<a href='".$post_url."'>";
+						}
+						
+							$out_temp .= $post_image;
+							
+						if($post_content != '')
+						{
+							$out_temp .= "</a>";
+						}
+						
+					$out_temp .= "</div>";
 
 					$out_meta_temp = "";
+
+					if(count($attributes['news_categories']) != 1)
+					{
+						$arr_categories = get_the_category($post_id);
+					}
 
 					foreach($arr_categories as $arr_category)
 					{
 						if($arr_category->cat_name != __("Uncategorized", 'lang_news'))
 						{
 							$out_meta_temp .= "<span>".$arr_category->cat_name."</span>";
+						}
+					}
+
+					$arr_tags = get_the_tags($post_id);
+
+					if(!empty($arr_tags))
+					{
+						foreach($arr_tags as $post_tag)
+						{
+							$out_meta_temp .= "<span class='tag'>".$post_tag->name."</span>";
 						}
 					}
 
@@ -92,7 +121,15 @@ class mf_news
 
 					if($post_title != '')
 					{
-						$out_temp .= "<a href='".$post_url."' class='grid_title'>".$post_title."</a>";
+						if($post_content != '')
+						{
+							$out_temp .= "<a href='".$post_url."' class='grid_title'>".$post_title."</a>";
+						}
+
+						else
+						{
+							$out_temp .= "<span class='grid_title'>".$post_title."</span>";
+						}
 					}
 
 					if($post_excerpt != '')
