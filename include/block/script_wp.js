@@ -4,6 +4,7 @@
 		registerBlockType = wp.blocks.registerBlockType,
 		SelectControl = wp.components.SelectControl,
 		TextControl = wp.components.TextControl,
+		PanelBody = wp.components.PanelBody,
 		InspectorControls = wp.blockEditor.InspectorControls;
 
 	registerBlockType('mf/news',
@@ -40,11 +41,6 @@
 				'default': 'yes'
 			},
 			'news_datetime':
-			{
-				'type': 'string',
-				'default': 'yes'
-			},
-			'news_shorten':
 			{
 				'type': 'string',
 				'default': 'yes'
@@ -85,83 +81,75 @@
 				[
 					el(
 						InspectorControls,
-						'div',
+						{key: 'inspector'},
 						el(
-							TextControl,
-							{
-								label: script_news_block_wp.news_amount_label,
-								type: 'number',
-								value: props.attributes.news_amount,
-								onChange: function(value)
+							PanelBody,
+							{title: script_news_block_wp.block_title, initialOpen: true},
+							el(
+								TextControl,
 								{
-									props.setAttributes({news_amount: value});
-								},
-								min: 0,
-								max: 60,
-								step: 3,
-							}
-						),
-						el(
-							SelectControl,
-							{
-								label: script_news_block_wp.news_categories_label,
-								value: props.attributes.news_categories,
-								options: convert_php_array_to_block_js(script_news_block_wp.news_categories),
-								multiple: true,
-								onChange: function(value)
-								{
-									props.setAttributes({news_categories: value});
+									label: script_news_block_wp.news_amount_label,
+									type: 'number',
+									value: props.attributes.news_amount,
+									onChange: function(value)
+									{
+										props.setAttributes({news_amount: value});
+									},
+									min: 0,
+									max: 60,
+									step: 3,
 								}
-							}
-						),
-						el(
-							SelectControl,
-							{
-								label: script_news_block_wp.news_style_label,
-								value: props.attributes.news_style,
-								options: convert_php_array_to_block_js(script_news_block_wp.arr_news_style, false),
-								multiple: false,
-								onChange: function(value)
+							),
+							el(
+								SelectControl,
 								{
-									props.setAttributes({news_style: value});
+									label: script_news_block_wp.news_categories_label,
+									value: props.attributes.news_categories,
+									options: convert_php_array_to_block_js(script_news_block_wp.news_categories),
+									multiple: true,
+									onChange: function(value)
+									{
+										props.setAttributes({news_categories: value});
+									}
 								}
-							}
-						),
-						el(
-							SelectControl,
-							{
-								label: script_news_block_wp.news_images_label,
-								value: props.attributes.news_images,
-								options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
-								onChange: function(value)
+							),
+							el(
+								SelectControl,
 								{
-									props.setAttributes({news_images: value});
+									label: script_news_block_wp.news_style_label,
+									value: props.attributes.news_style,
+									options: convert_php_array_to_block_js(script_news_block_wp.arr_news_style, false),
+									multiple: false,
+									onChange: function(value)
+									{
+										props.setAttributes({news_style: value});
+									}
 								}
-							}
-						),
-						el(
-							SelectControl,
-							{
-								label: script_news_block_wp.news_datetime_label,
-								value: props.attributes.news_datetime,
-								options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
-								onChange: function(value)
+							),
+							el(
+								SelectControl,
 								{
-									props.setAttributes({news_datetime: value});
+									label: script_news_block_wp.news_images_label,
+									value: props.attributes.news_images,
+									options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
+									onChange: function(value)
+									{
+										props.setAttributes({news_images: value});
+									}
 								}
-							}
-						),
-						el(
-							SelectControl,
-							{
-								label: script_news_block_wp.news_shorten_label,
-								value: props.attributes.news_shorten,
-								options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
-								onChange: function(value)
+							),
+							el(
+								SelectControl,
 								{
-									props.setAttributes({news_shorten: value});
+									label: script_news_block_wp.news_datetime_label,
+									value: props.attributes.news_datetime,
+									options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
+									onChange: function(value)
+									{
+										props.setAttributes({news_datetime: value});
+									}
 								}
-							}
+							)
 						)
 					),
 					el(
@@ -242,46 +230,50 @@
 				[
 					el(
 						InspectorControls,
-						'div',
+						{key: 'inspector'},
 						el(
-							TextControl,
-							{
-								label: script_news_block_wp.news_text_label,
-								type: 'text',
-								value: props.attributes.news_text,
-								onChange: function(value)
+							PanelBody,
+							{title: script_news_block_wp.block_title_news_promo, initialOpen: true},
+							el(
+								TextControl,
 								{
-									props.setAttributes({news_text: value});
-								},
-							}
-						),
-						el(
-							TextControl,
-							{
-								label: script_news_block_wp.news_day_limit_label,
-								type: 'number',
-								value: props.attributes.news_day_limit,
-								onChange: function(value)
-								{
-									props.setAttributes({news_day_limit: value});
-								},
-								min: 0,
-								max: 60,
-								step: 1,
-							}
-						),
-						el(
-							SelectControl,
-							{
-								label: script_news_block_wp.news_categories_label,
-								value: props.attributes.news_categories,
-								options: convert_php_array_to_block_js(script_news_block_wp.news_categories),
-								multiple: true,
-								onChange: function(value)
-								{
-									props.setAttributes({news_categories: value});
+									label: script_news_block_wp.news_text_label,
+									type: 'text',
+									value: props.attributes.news_text,
+									onChange: function(value)
+									{
+										props.setAttributes({news_text: value});
+									},
 								}
-							}
+							),
+							el(
+								TextControl,
+								{
+									label: script_news_block_wp.news_day_limit_label,
+									type: 'number',
+									value: props.attributes.news_day_limit,
+									onChange: function(value)
+									{
+										props.setAttributes({news_day_limit: value});
+									},
+									min: 0,
+									max: 60,
+									step: 1,
+								}
+							),
+							el(
+								SelectControl,
+								{
+									label: script_news_block_wp.news_categories_label,
+									value: props.attributes.news_categories,
+									options: convert_php_array_to_block_js(script_news_block_wp.news_categories),
+									multiple: true,
+									onChange: function(value)
+									{
+										props.setAttributes({news_categories: value});
+									}
+								}
+							)
 						)
 					),
 					el(
@@ -357,31 +349,35 @@
 				[
 					el(
 						InspectorControls,
-						'div',
+						{key: 'inspector'},
 						el(
-							SelectControl,
-							{
-								label: script_news_block_wp.promote_include_label,
-								value: props.attributes.promote_include,
-								options: convert_php_array_to_block_js(script_news_block_wp.promote_include),
-								multiple: true,
-								onChange: function(value)
+							PanelBody,
+							{title: script_news_block_wp.block_title_pages, initialOpen: true},
+							el(
+								SelectControl,
 								{
-									props.setAttributes({promote_include: value});
+									label: script_news_block_wp.promote_include_label,
+									value: props.attributes.promote_include,
+									options: convert_php_array_to_block_js(script_news_block_wp.promote_include),
+									multiple: true,
+									onChange: function(value)
+									{
+										props.setAttributes({promote_include: value});
+									}
 								}
-							}
-						),
-						el(
-							SelectControl,
-							{
-								label: script_news_block_wp.promote_display_title_label,
-								value: props.attributes.promote_display_title,
-								options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
-								onChange: function(value)
+							),
+							el(
+								SelectControl,
 								{
-									props.setAttributes({promote_display_title: value});
+									label: script_news_block_wp.promote_display_title_label,
+									value: props.attributes.promote_display_title,
+									options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
+									onChange: function(value)
+									{
+										props.setAttributes({promote_display_title: value});
+									}
 								}
-							}
+							)
 						)
 					),
 					el(
@@ -452,19 +448,23 @@
 				[
 					el(
 						InspectorControls,
-						'div',
+						{key: 'inspector'},
 						el(
-							SelectControl,
-							{
-								label: script_news_block_wp.post_type_include_label,
-								value: props.attributes.post_type_include,
-								options: convert_php_array_to_block_js(script_news_block_wp.post_type_include),
-								multiple: true,
-								onChange: function(value)
+							PanelBody,
+							{title: script_news_block_wp.block_title_posttype, initialOpen: true},
+							el(
+								SelectControl,
 								{
-									props.setAttributes({post_type_include: value});
+									label: script_news_block_wp.post_type_include_label,
+									value: props.attributes.post_type_include,
+									options: convert_php_array_to_block_js(script_news_block_wp.post_type_include),
+									multiple: true,
+									onChange: function(value)
+									{
+										props.setAttributes({post_type_include: value});
+									}
 								}
-							}
+							)
 						)
 					),
 					el(

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-26 13:07+0100\n"
+"POT-Creation-Date: 2026-10-09 12:32+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,98 +15,109 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:74
+#: ../include/classes.php:100
 msgid "Uncategorized"
 msgstr "Okategoriserade"
 
-#: ../include/classes.php:118
+#: ../include/classes.php:164
 msgid "Read More"
 msgstr "Läs mer"
 
-#: ../include/classes.php:384
+#: ../include/classes.php:431
 msgid "Choose Here"
 msgstr "Välj här"
 
-#: ../include/classes.php:385
+#: ../include/classes.php:432
 msgid "Default"
 msgstr "Standard"
 
-#: ../include/classes.php:386
+#: ../include/classes.php:433
 msgid "Horizontal Scroll"
 msgstr "Horisontell skroll"
 
-#: ../include/classes.php:409
-msgid "News"
-msgstr "Nyheter"
+#: ../include/classes.php:456
+msgid "Posts"
+msgstr "Inlägg"
 
-#: ../include/classes.php:410
-msgid "Display News"
-msgstr "Visa nyheter"
+#: ../include/classes.php:457
+msgid "Display Posts"
+msgstr "Visa inlägg"
 
-#: ../include/classes.php:411
+#: ../include/classes.php:458
 msgid "Amount"
 msgstr "Antal"
 
-#: ../include/classes.php:412
+#: ../include/classes.php:459
 msgid "Categories"
 msgstr "Kategorier"
 
-#: ../include/classes.php:414
+#: ../include/classes.php:461
 msgid "Style"
 msgstr "Stil"
 
-#: ../include/classes.php:416
+#: ../include/classes.php:463
 msgid "Display Images"
 msgstr "Visa bilder"
 
-#: ../include/classes.php:417
+#: ../include/classes.php:464
 msgid "Display Date"
 msgstr "Visa datum"
 
-#: ../include/classes.php:418
-msgid "Shorten Text"
-msgstr "Förkorta text"
+#: ../include/classes.php:466
+msgid "Promote Post"
+msgstr "Promo för inlägg"
 
-#: ../include/classes.php:420
-msgid "News Promo"
-msgstr "En nyhet"
+#: ../include/classes.php:467
+msgid "Display Post Promotion"
+msgstr "Visa promo för inlägg"
 
-#: ../include/classes.php:421
-msgid "Display News Promo"
-msgstr "Visa en nyhet"
-
-#: ../include/classes.php:422
+#: ../include/classes.php:468
 msgid "Day Limit"
 msgstr "Antal dagar bakåt i tiden"
 
-#: ../include/classes.php:423
+#: ../include/classes.php:469
 msgid "Text"
 msgstr ""
 
-#: ../include/classes.php:424
+#: ../include/classes.php:470
 msgid "Other Pages"
 msgstr "Andra sidor"
 
-#: ../include/classes.php:425
+#: ../include/classes.php:471
 msgid "Display other pages"
 msgstr "Visa andra sidor"
 
-#: ../include/classes.php:426
-#: ../include/classes.php:431
+#: ../include/classes.php:472
+#: ../include/classes.php:477
 msgid "Include"
 msgstr "Inkludera"
 
-#: ../include/classes.php:428
+#: ../include/classes.php:474
 msgid "Display Title"
 msgstr "Visa rubrik"
 
-#: ../include/classes.php:429
+#: ../include/classes.php:475
 msgid "Other Posts from Type"
 msgstr "Andra från samma typ"
 
-#: ../include/classes.php:430
+#: ../include/classes.php:476
 msgid "Display other posts from type"
 msgstr "Visa andra från samma typ"
+
+#~ msgid "Shorten Text"
+#~ msgstr "Förkorta text"
+
+#~ msgid "Pages"
+#~ msgstr "Sidor"
+
+#~ msgid "Display Pages"
+#~ msgstr "Visa sidor"
+
+#~ msgid "News"
+#~ msgstr "Nyheter"
+
+#~ msgid "News Promo"
+#~ msgstr "En nyhet"
 
 #~ msgid "Columns"
 #~ msgstr "Kolumner"
