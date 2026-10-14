@@ -105,7 +105,7 @@
 								{
 									label: script_news_block_wp.news_categories_label,
 									value: props.attributes.news_categories,
-									options: convert_php_array_to_block_js(script_news_block_wp.news_categories),
+									options: convert_php_array_to_block_js(script_news_block_wp.news_categories, false),
 									multiple: true,
 									onChange: function(value)
 									{
@@ -266,7 +266,7 @@
 								{
 									label: script_news_block_wp.news_categories_label,
 									value: props.attributes.news_categories,
-									options: convert_php_array_to_block_js(script_news_block_wp.news_categories),
+									options: convert_php_array_to_block_js(script_news_block_wp.news_categories, false),
 									multiple: true,
 									onChange: function(value)
 									{
@@ -358,7 +358,7 @@
 								{
 									label: script_news_block_wp.promote_include_label,
 									value: props.attributes.promote_include,
-									options: convert_php_array_to_block_js(script_news_block_wp.promote_include),
+									options: convert_php_array_to_block_js(script_news_block_wp.promote_include, false),
 									multiple: true,
 									onChange: function(value)
 									{
@@ -371,7 +371,7 @@
 								{
 									label: script_news_block_wp.promote_display_title_label,
 									value: props.attributes.promote_display_title,
-									options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select),
+									options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select, false),
 									onChange: function(value)
 									{
 										props.setAttributes({promote_display_title: value});
@@ -457,7 +457,7 @@
 								{
 									label: script_news_block_wp.post_type_include_label,
 									value: props.attributes.post_type_include,
-									options: convert_php_array_to_block_js(script_news_block_wp.post_type_include),
+									options: convert_php_array_to_block_js(script_news_block_wp.post_type_include, false),
 									multiple: true,
 									onChange: function(value)
 									{
