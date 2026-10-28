@@ -68,7 +68,7 @@ class mf_news
 					{
 						$out_temp .= "<a href='".$post_url."'>";
 					}
-					
+
 						$out_temp .= "<div class='grid_image'>"
 							.$post_image;
 
@@ -115,7 +115,7 @@ class mf_news
 							{
 								$out_temp .= "<div class='grid_meta'>".$out_meta_temp."</div>";
 							}
-							
+
 						$out_temp .= "</div>";
 
 					if($post_content != '')
@@ -247,6 +247,7 @@ class mf_news
 	{
 		global $wpdb;
 
+		if(!isset($attributes['promote_list_mode'])){		$attributes['promote_list_mode'] = '';}
 		if(!isset($attributes['promote_include'])){			$attributes['promote_include'] = [];}
 		if(!isset($attributes['promote_display_title'])){	$attributes['promote_display_title'] = 'yes';}
 
@@ -256,7 +257,18 @@ class mf_news
 		{
 			$arr_out = [];
 
-			$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_excerpt, post_content FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s AND ID IN('".implode("','", $attributes['promote_include'])."') ORDER BY menu_order ASC", 'page', 'publish'));
+			switch($attributes['promote_list_mode'])
+			{
+				case 'children':
+					$query_where = " AND post_parent IN('".implode("','", $attributes['promote_include'])."')";
+				break;
+
+				default:
+					$query_where = " AND ID IN('".implode("','", $attributes['promote_include'])."')";
+				break;
+			}
+
+			$result = $wpdb->get_results($wpdb->prepare("SELECT ID, post_title, post_excerpt, post_content FROM ".$wpdb->posts." WHERE post_type = %s AND post_status = %s".$query_where." ORDER BY menu_order ASC", 'page', 'publish'));
 
 			foreach($result as $r)
 			{
@@ -435,6 +447,16 @@ class mf_news
 		return $arr_data;
 	}
 
+	function get_list_mode_for_select()
+	{
+		$arr_data = [];
+		$arr_data[''] = "-- ".__("Choose Here", 'lang_news')." --";
+		$arr_data['parent'] = __("Chosen Pages", 'lang_news');
+		$arr_data['children'] = __("Children of Chosen Pages", 'lang_news');
+
+		return $arr_data;
+	}
+
 	function enqueue_block_editor_assets()
 	{
 		$plugin_include_url = plugin_dir_url(__FILE__);
@@ -469,6 +491,8 @@ class mf_news
 			'news_text_label' => __("Text", 'lang_news'),
 			'block_title_pages' => __("Other Pages", 'lang_news'),
 			'block_description_pages' => __("Display other pages", 'lang_news'),
+			'promote_list_mode_label' => __("List Mode", 'lang_news'),
+			'arr_promote_list_mode' => $this->get_list_mode_for_select(),
 			'promote_include_label' => __("Include", 'lang_news'),
 			'promote_include' => $arr_data_pages,
 			'promote_display_title_label' => __("Display Title", 'lang_news'),

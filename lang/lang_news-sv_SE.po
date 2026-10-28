@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-09 12:32+0100\n"
+"POT-Creation-Date: 2026-10-28 09:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:100
+#: ../include/classes.php:93
 msgid "Uncategorized"
 msgstr "Okategoriserade"
 
@@ -23,84 +23,97 @@ msgstr "Okategoriserade"
 msgid "Read More"
 msgstr "Läs mer"
 
-#: ../include/classes.php:431
+#: ../include/classes.php:443
+#: ../include/classes.php:453
 msgid "Choose Here"
 msgstr "Välj här"
 
-#: ../include/classes.php:432
+#: ../include/classes.php:444
 msgid "Default"
 msgstr "Standard"
 
-#: ../include/classes.php:433
+#: ../include/classes.php:445
 msgid "Horizontal Scroll"
 msgstr "Horisontell skroll"
 
-#: ../include/classes.php:456
+#: ../include/classes.php:454
+msgid "Chosen Pages"
+msgstr "Valda sidor"
+
+#: ../include/classes.php:455
+msgid "Children of Chosen Pages"
+msgstr "Undersidor till valda sidor"
+
+#: ../include/classes.php:478
 msgid "Posts"
 msgstr "Inlägg"
 
-#: ../include/classes.php:457
+#: ../include/classes.php:479
 msgid "Display Posts"
 msgstr "Visa inlägg"
 
-#: ../include/classes.php:458
+#: ../include/classes.php:480
 msgid "Amount"
 msgstr "Antal"
 
-#: ../include/classes.php:459
+#: ../include/classes.php:481
 msgid "Categories"
 msgstr "Kategorier"
 
-#: ../include/classes.php:461
+#: ../include/classes.php:483
 msgid "Style"
 msgstr "Stil"
 
-#: ../include/classes.php:463
+#: ../include/classes.php:485
 msgid "Display Images"
 msgstr "Visa bilder"
 
-#: ../include/classes.php:464
+#: ../include/classes.php:486
 msgid "Display Date"
 msgstr "Visa datum"
 
-#: ../include/classes.php:466
+#: ../include/classes.php:488
 msgid "Promote Post"
 msgstr "Promo för inlägg"
 
-#: ../include/classes.php:467
+#: ../include/classes.php:489
 msgid "Display Post Promotion"
 msgstr "Visa promo för inlägg"
 
-#: ../include/classes.php:468
+#: ../include/classes.php:490
 msgid "Day Limit"
 msgstr "Antal dagar bakåt i tiden"
 
-#: ../include/classes.php:469
+#: ../include/classes.php:491
 msgid "Text"
 msgstr ""
 
-#: ../include/classes.php:470
+#: ../include/classes.php:492
 msgid "Other Pages"
 msgstr "Andra sidor"
 
-#: ../include/classes.php:471
+#: ../include/classes.php:493
 msgid "Display other pages"
 msgstr "Visa andra sidor"
 
-#: ../include/classes.php:472
-#: ../include/classes.php:477
+#: ../include/classes.php:494
+msgid "List Mode"
+msgstr "Listläge"
+
+#: ../include/classes.php:496
+#: ../include/classes.php:501
 msgid "Include"
 msgstr "Inkludera"
 
-#: ../include/classes.php:474
+#: ../include/classes.php:498
 msgid "Display Title"
 msgstr "Visa rubrik"
 
-#: ../include/classes.php:475
+#: ../include/classes.php:499
 msgid "Other Posts from Type"
 msgstr "Andra från samma typ"
 
-#: ../include/classes.php:476
+#: ../include/classes.php:500
 msgid "Display other posts from type"
 msgstr "Visa andra från samma typ"
 

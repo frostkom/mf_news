@@ -303,6 +303,11 @@
 				'type': 'string',
 				'default': ''
 			},
+			'promote_list_mode':
+			{
+				'type': 'string',
+				'default': ''
+			},
 			'promote_include':
 			{
 				'type': 'array',
@@ -353,6 +358,18 @@
 						el(
 							PanelBody,
 							{title: script_news_block_wp.block_title_pages, initialOpen: true},
+							el(
+								SelectControl,
+								{
+									label: script_news_block_wp.promote_list_mode_label,
+									value: props.attributes.promote_list_mode,
+									options: convert_php_array_to_block_js(script_news_block_wp.arr_promote_list_mode, false),
+									onChange: function(value)
+									{
+										props.setAttributes({promote_list_mode: value});
+									}
+								}
+							),
 							el(
 								SelectControl,
 								{
