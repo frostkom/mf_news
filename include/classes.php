@@ -64,64 +64,65 @@ class mf_news
 
 				if($attributes['news_images'] == 'yes')
 				{
-					if($post_content != '')
-					{
-						$out_temp .= "<a href='".$post_url."'>";
-					}
+					$out_temp .= "<div class='grid_image'>";
 
-						$out_temp .= "<div class='grid_image'>"
-							.$post_image;
+						if($post_content != '')
+						{
+							$out_temp .= "<a href='".$post_url."'>";
+						}
 
-							if($post_excerpt == '')
+							$out_temp .= $post_image;
+
+						if($post_content != '')
+						{
+							$out_temp .= "</a>";
+						}
+
+						if($post_excerpt == '')
+						{
+							$out_temp .= "<div class='grid_content'>
+								<div>
+									<span class='grid_title'>".$post_title."</span>
+								</div>
+							</div>";
+						}
+
+						$out_meta_temp = "";
+
+						if(count($attributes['news_categories']) != 1)
+						{
+							$arr_categories = get_the_category($post_id);
+						}
+
+						foreach($arr_categories as $arr_category)
+						{
+							if($arr_category->cat_name != __("Uncategorized", 'lang_news'))
 							{
-								$out_temp .= "<div class='grid_content'>
-									<div>
-										<span class='grid_title'>".$post_title."</span>
-									</div>
-								</div>";
+								$out_meta_temp .= "<span>".$arr_category->cat_name."</span>";
 							}
+						}
 
-							$out_meta_temp = "";
+						$arr_tags = get_the_tags($post_id);
 
-							if(count($attributes['news_categories']) != 1)
+						if(!empty($arr_tags))
+						{
+							foreach($arr_tags as $post_tag)
 							{
-								$arr_categories = get_the_category($post_id);
+								$out_meta_temp .= "<span class='tag'>".$post_tag->name."</span>";
 							}
+						}
 
-							foreach($arr_categories as $arr_category)
-							{
-								if($arr_category->cat_name != __("Uncategorized", 'lang_news'))
-								{
-									$out_meta_temp .= "<span>".$arr_category->cat_name."</span>";
-								}
-							}
+						if($attributes['news_datetime'] == 'yes')
+						{
+							$out_meta_temp .= "<span>".format_date($post_date)."</span>";
+						}
 
-							$arr_tags = get_the_tags($post_id);
+						if($out_meta_temp != "")
+						{
+							$out_temp .= "<div class='grid_meta'>".$out_meta_temp."</div>";
+						}
 
-							if(!empty($arr_tags))
-							{
-								foreach($arr_tags as $post_tag)
-								{
-									$out_meta_temp .= "<span class='tag'>".$post_tag->name."</span>";
-								}
-							}
-
-							if($attributes['news_datetime'] == 'yes')
-							{
-								$out_meta_temp .= "<span>".format_date($post_date)."</span>";
-							}
-
-							if($out_meta_temp != "")
-							{
-								$out_temp .= "<div class='grid_meta'>".$out_meta_temp."</div>";
-							}
-
-						$out_temp .= "</div>";
-
-					if($post_content != '')
-					{
-						$out_temp .= "</a>";
-					}
+					$out_temp .= "</div>";
 				}
 
 				if($post_excerpt != '')
@@ -302,8 +303,8 @@ class mf_news
 					}
 
 					$out_temp .= "<li>
-						<a href='".$post_url."'>
-							<div class='grid_image'>"
+						<div class='grid_image'>
+							<a href='".$post_url."'>"
 								.$post_image;
 
 								if($attributes['promote_display_title'] == 'yes')
@@ -321,9 +322,46 @@ class mf_news
 									</div>";
 								}
 
-							$out_temp .= "</div>
-						</a>
-					</li>";
+							$out_temp .= "</a>
+						</div>";
+
+						if($attributes['promote_display_title'] == 'outside')
+						{
+							$out_temp .= "<div class='grid_content'>";
+
+								if($post_title != '')
+								{
+									if($post_content != '')
+									{
+										$out_temp .= "<a href='".$post_url."' class='grid_title'>".$post_title."</a>";
+									}
+
+									else
+									{
+										$out_temp .= "<span class='grid_title'>".$post_title."</span>";
+									}
+								}
+
+								if($post_excerpt != '')
+								{
+									$out_temp .= "<p class='grid_text'>"
+										.$post_excerpt
+									."</p>";
+								}
+
+							$out_temp .= "</div>";
+
+							if($post_content != $post_excerpt)
+							{
+								$out_temp .= "<div class='grid_buttons'>
+									<div class='wp-block-button'>
+										<a href='".$post_url."' class='wp-block-button__link'>".__("Read More", 'lang_news')."</a>
+									</div>
+								</div>";
+							}
+						}
+
+					$out_temp .= "</li>";
 				}
 
 				$arr_out[] = $out_temp;
@@ -447,6 +485,16 @@ class mf_news
 		return $arr_data;
 	}
 
+	function get_display_title_for_select()
+	{
+		$arr_data = [];
+		$arr_data['no'] = __("No", 'lang_news');
+		$arr_data['yes'] = __("Yes", 'lang_news');
+		$arr_data['outside'] = __("Yes", 'lang_news')." (".__("Outside", 'lang_news').")";
+
+		return $arr_data;
+	}
+
 	function get_list_mode_for_select()
 	{
 		$arr_data = [];
@@ -496,6 +544,7 @@ class mf_news
 			'promote_include_label' => __("Include", 'lang_news'),
 			'promote_include' => $arr_data_pages,
 			'promote_display_title_label' => __("Display Title", 'lang_news'),
+			'arr_promote_display_title' => $this->get_display_title_for_select(),
 			'block_title_posttype' => __("Other Posts from Type", 'lang_news'),
 			'block_description_posttype' => __("Display other posts from type", 'lang_news'),
 			'post_type_include_label' => __("Include", 'lang_news'),

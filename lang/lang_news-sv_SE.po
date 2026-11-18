@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-28 09:42+0100\n"
+"POT-Creation-Date: 2026-11-18 12:19+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,105 +15,119 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:93
+#: ../include/classes.php:99
 msgid "Uncategorized"
 msgstr "Okategoriserade"
 
-#: ../include/classes.php:164
+#: ../include/classes.php:165
+#: ../include/classes.php:358
 msgid "Read More"
 msgstr "Läs mer"
 
-#: ../include/classes.php:443
-#: ../include/classes.php:453
+#: ../include/classes.php:481
+#: ../include/classes.php:501
 msgid "Choose Here"
 msgstr "Välj här"
 
-#: ../include/classes.php:444
+#: ../include/classes.php:482
 msgid "Default"
 msgstr "Standard"
 
-#: ../include/classes.php:445
+#: ../include/classes.php:483
 msgid "Horizontal Scroll"
 msgstr "Horisontell skroll"
 
-#: ../include/classes.php:454
+#: ../include/classes.php:491
+msgid "No"
+msgstr "Nej"
+
+#: ../include/classes.php:492
+#: ../include/classes.php:493
+msgid "Yes"
+msgstr "Ja"
+
+#: ../include/classes.php:493
+msgid "Outside"
+msgstr "Utanför"
+
+#: ../include/classes.php:502
 msgid "Chosen Pages"
 msgstr "Valda sidor"
 
-#: ../include/classes.php:455
+#: ../include/classes.php:503
 msgid "Children of Chosen Pages"
 msgstr "Undersidor till valda sidor"
 
-#: ../include/classes.php:478
+#: ../include/classes.php:526
 msgid "Posts"
 msgstr "Inlägg"
 
-#: ../include/classes.php:479
+#: ../include/classes.php:527
 msgid "Display Posts"
 msgstr "Visa inlägg"
 
-#: ../include/classes.php:480
+#: ../include/classes.php:528
 msgid "Amount"
 msgstr "Antal"
 
-#: ../include/classes.php:481
+#: ../include/classes.php:529
 msgid "Categories"
 msgstr "Kategorier"
 
-#: ../include/classes.php:483
+#: ../include/classes.php:531
 msgid "Style"
 msgstr "Stil"
 
-#: ../include/classes.php:485
+#: ../include/classes.php:533
 msgid "Display Images"
 msgstr "Visa bilder"
 
-#: ../include/classes.php:486
+#: ../include/classes.php:534
 msgid "Display Date"
 msgstr "Visa datum"
 
-#: ../include/classes.php:488
+#: ../include/classes.php:536
 msgid "Promote Post"
 msgstr "Promo för inlägg"
 
-#: ../include/classes.php:489
+#: ../include/classes.php:537
 msgid "Display Post Promotion"
 msgstr "Visa promo för inlägg"
 
-#: ../include/classes.php:490
+#: ../include/classes.php:538
 msgid "Day Limit"
 msgstr "Antal dagar bakåt i tiden"
 
-#: ../include/classes.php:491
+#: ../include/classes.php:539
 msgid "Text"
 msgstr ""
 
-#: ../include/classes.php:492
+#: ../include/classes.php:540
 msgid "Other Pages"
 msgstr "Andra sidor"
 
-#: ../include/classes.php:493
+#: ../include/classes.php:541
 msgid "Display other pages"
 msgstr "Visa andra sidor"
 
-#: ../include/classes.php:494
+#: ../include/classes.php:542
 msgid "List Mode"
 msgstr "Listläge"
 
-#: ../include/classes.php:496
-#: ../include/classes.php:501
+#: ../include/classes.php:544
+#: ../include/classes.php:550
 msgid "Include"
 msgstr "Inkludera"
 
-#: ../include/classes.php:498
+#: ../include/classes.php:546
 msgid "Display Title"
 msgstr "Visa rubrik"
 
-#: ../include/classes.php:499
+#: ../include/classes.php:548
 msgid "Other Posts from Type"
 msgstr "Andra från samma typ"
 
-#: ../include/classes.php:500
+#: ../include/classes.php:549
 msgid "Display other posts from type"
 msgstr "Visa andra från samma typ"
 

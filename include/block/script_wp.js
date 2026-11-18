@@ -388,7 +388,7 @@
 								{
 									label: script_news_block_wp.promote_display_title_label,
 									value: props.attributes.promote_display_title,
-									options: convert_php_array_to_block_js(script_news_block_wp.yes_no_for_select, false),
+									options: convert_php_array_to_block_js(script_news_block_wp.arr_promote_display_title, false),
 									onChange: function(value)
 									{
 										props.setAttributes({promote_display_title: value});
